@@ -3,7 +3,7 @@ import scss from "./layout.module.css";
 import { useSession } from "next-auth/react";
 import React from "react";
 import Head from "next/head";
-import Sidebar from './../sidebar/sidebar';
+import Sidebar from '../sidebar/sidebar';
 import Footer from "../Footer";
 
 const Layout = (props: any) => {

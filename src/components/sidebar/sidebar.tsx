@@ -86,7 +86,7 @@ const Sidebar = () => {
       open={open}
       className={scss.sideMenu}
       sx={{
-        width: drawerWidth,
+        width: drawerWidth as number,
         [`& .MuiDrawer-paper`]: {
           left: 0,
           top: mobileCheck ? 64 : 57,
@@ -95,13 +95,13 @@ const Sidebar = () => {
           boxSizing: "border-box",
           ...(open && {
             ...openedMixin(theme),
-            "& .MuiDrawer-paper": openedMixin(theme),
+            "& .MuiDrawer-paper": openedMixin(theme) as  CSSObject,
           }),
           ...(!open && {
-            ...closedMixin(theme),
-            "& .MuiDrawer-paper": closedMixin(theme),
+            ...closedMixin(theme) as  CSSObject,
+            "& .MuiDrawer-paper": closedMixin(theme) as  CSSObject,
           }),
-        },
+        } as  CSSObject,
       }}
     >
       <div className={scss.drawerHeader}>

@@ -11,7 +11,7 @@ const ColorModeContext = React.createContext({
     toggleColorMode: () => {}
 });
 
-const App = ({Component, pageProps: {session, ...pageProps}}) => {
+const App = ({Component  , pageProps: {session , ...pageProps}}) => {
 
     const [mode, setMode] = React.useState<'light' | 'dark'>('dark');
     const colorMode = React.useMemo(
@@ -28,14 +28,14 @@ const App = ({Component, pageProps: {session, ...pageProps}}) => {
             createTheme({
                 ...darkTheme
             }),
-        [mode],
+        [],
     )
     const lightThemeChosen = React.useMemo(
         () =>
             createTheme({
                 ...lightTheme,
             }),
-        [mode],
+        [],
     )
     return (<ColorModeContext.Provider value={colorMode}>
             <ThemeProvider theme={mode === 'dark' ? darkThemeChosen : lightThemeChosen}>
