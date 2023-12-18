@@ -6,7 +6,7 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import Person2Icon from "@mui/icons-material/Person2";
 import EqualizerIcon from "@mui/icons-material/Equalizer";
-import { Key, Settings } from "@mui/icons-material";
+import { Settings } from "@mui/icons-material";
 import NextLink from "next/link";
 import scss from "./sidemenu.module.scss";
 import HomeIcon from "@mui/icons-material/Home";
@@ -49,9 +49,9 @@ const closedMixin = (theme: Theme): CSSObject => ({
   },
 });
 
-const menuRouteList = ["", "analytics", "profile", "setting", ""];
+const menuRouteList = ["", "analytics"];
 
-
+const menuRouteList2 =["setting", ""]
 
 const Sidebar = () => {
   const theme = useTheme();
@@ -152,14 +152,14 @@ const Sidebar = () => {
       <Divider/>
       <List>
         {[
-  "Profile",
-  "Setting",
+  "Settings",
+  "Sign Out",
 ].map((text, index) => (
           <ListItem key={text} disablePadding sx={{ display: "block" }}>
             <NextLink
            
               className={scss.link}
-              href={`/dashboard/${menuRouteList[index]}`}
+              href={`/dashboard/${menuRouteList2[index]}`}
             >
               <ListItemButton
               key = {text}
@@ -180,7 +180,7 @@ const Sidebar = () => {
                   justifyContent: "center",
                 }}
                 >
-               {index % 2 === 0 ? <Person2Icon /> : <Settings />}
+               {index % 2 === 0 ?   <Settings /> : <ExitToAppIcon/>}
                
                 </ListItemIcon>
                 <ListItemText
@@ -190,7 +190,7 @@ const Sidebar = () => {
                     color: theme.palette.text.primary,
                     opacity: open ? 1 : 0,
                   }}
-                />{" "}
+                />
               </ListItemButton>
             </NextLink>
           </ListItem>
