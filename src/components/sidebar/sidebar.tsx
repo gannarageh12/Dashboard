@@ -6,7 +6,7 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import Person2Icon from "@mui/icons-material/Person2";
 import EqualizerIcon from "@mui/icons-material/Equalizer";
-import { Settings } from "@mui/icons-material";
+import { Key, Settings } from "@mui/icons-material";
 import NextLink from "next/link";
 import scss from "./sidemenu.module.scss";
 import HomeIcon from "@mui/icons-material/Home";
@@ -50,20 +50,8 @@ const closedMixin = (theme: Theme): CSSObject => ({
 });
 
 const menuRouteList = ["", "analytics", "profile", "setting", ""];
-const menuListTranslations = [
-  "Home",
-  "analytics",
-  "Profile",
-  "Setting",
-  "Sign Out",
-];
-const menuListIcons = [
-  <HomeIcon />,
-  <EqualizerIcon />,
-  <Person2Icon />,
-  <Settings />,
-  <ExitToAppIcon />,
-];
+
+
 
 const Sidebar = () => {
   const theme = useTheme();
@@ -116,13 +104,18 @@ const Sidebar = () => {
       <Divider />
       <Divider />
       <List>
-        {menuListTranslations.map((text, index) => (
+        {[
+  "Home",
+  "analytics",
+].map((text, index) => (
           <ListItem key={text} disablePadding sx={{ display: "block" }}>
             <NextLink
+           
               className={scss.link}
               href={`/dashboard/${menuRouteList[index]}`}
             >
               <ListItemButton
+              key = {text}
                 onClick={() => handleListItemButtonClick(text)}
                 title={text}
                 aria-label={text}
@@ -133,15 +126,18 @@ const Sidebar = () => {
                 }}
               >
                 <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
-                  }}
+           
+                sx={{
+                  minWidth: 0,
+                  mr: open ? 3 : "auto",
+                  justifyContent: "center",
+                }}
                 >
-                  {menuListIcons[index]}
+               {index % 2 === 0 ? <HomeIcon /> : <EqualizerIcon />}
+               
                 </ListItemIcon>
                 <ListItemText
+                key={text}
                   primary={text}
                   sx={{
                     color: theme.palette.text.primary,
@@ -153,6 +149,54 @@ const Sidebar = () => {
           </ListItem>
         ))}
       </List>
+      <Divider/>
+      <List>
+        {[
+  "Profile",
+  "Setting",
+].map((text, index) => (
+          <ListItem key={text} disablePadding sx={{ display: "block" }}>
+            <NextLink
+           
+              className={scss.link}
+              href={`/dashboard/${menuRouteList[index]}`}
+            >
+              <ListItemButton
+              key = {text}
+                onClick={() => handleListItemButtonClick(text)}
+                title={text}
+                aria-label={text}
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? "initial" : "center",
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+           
+                sx={{
+                  minWidth: 0,
+                  mr: open ? 3 : "auto",
+                  justifyContent: "center",
+                }}
+                >
+               {index % 2 === 0 ? <Person2Icon /> : <Settings />}
+               
+                </ListItemIcon>
+                <ListItemText
+                key={text}
+                  primary={text}
+                  sx={{
+                    color: theme.palette.text.primary,
+                    opacity: open ? 1 : 0,
+                  }}
+                />{" "}
+              </ListItemButton>
+            </NextLink>
+          </ListItem>
+        ))}
+      </List>
+  
     </Drawer>
   );
 };
